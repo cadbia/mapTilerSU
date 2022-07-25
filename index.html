@@ -1,35 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Display a map</title>
-  <script src="https://cdn.maptiler.com/maplibre-gl-js/v2.2.0-pre.2/maplibre-gl.js"></script>
-  <link href="https://cdn.maptiler.com/maplibre-gl-js/v2.2.0-pre.2/maplibre-gl.css" rel="stylesheet" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>ArcGIS Developers Guide: Display a map (2D)</title>
   <style>
-    body {
-      margin: 0;
+    html,
+    body,
+    #viewDiv {
       padding: 0;
-    }
-    #map {
-      position: absolute;
-      top: 0;
-      bottom: 0;
+      margin: 0;
+      height: 100%;
       width: 100%;
     }
   </style>
-</head>
-<body>
-  <div id="map"></div>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.19/"></script>
+
   <script>
-      const key = 'LO6wMgQFvMpASsQLOuKn';
-      const map = new maplibregl.Map({
-        container: 'map', // container id
-        style: `https://api.maptiler.com/maps/streets/style.json?key=${key}`, // style URL
-        center: [-76.1351, 43.048122], // starting position [lng, lat]
-        zoom: 13, // starting zoom
+    require([
+     "esri/config",
+      "esri/Map",
+      "esri/views/MapView"
+    ], function (esriConfig,Map, MapView) {
+
+      esriConfig.apiKey = "AAPKed898b01d6c0496282aa6c4d1d819efcKOhvqxaj6gDew8v29HlQBXwKBd3b624qYc9A__fj5mkd3FHMAZ0FZ6e2bjZeUg4g";
+      const map = new Map({
+        basemap: "arcgis-topographic" // Basemap layer
       });
+
+      const view = new MapView({
+        map: map,
+        center: [-76.1474, 43.0481],
+        zoom: 14, 
+        container: "viewDiv",
+        constraints: {
+          snapToZoom: false
+        }
+      });
+    });
   </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
 </body>
+
 </html>
