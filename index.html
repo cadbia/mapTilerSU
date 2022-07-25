@@ -1,13 +1,10 @@
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>ArcGIS Developers Guide: Display a map (2D)</title>
+  <title>ArcGIS API for JavaScript Tutorials: Display a scene</title>
   <style>
-    html,
-    body,
-    #viewDiv {
+    html, body, #viewDiv {
       padding: 0;
       margin: 0;
       height: 100%;
@@ -15,36 +12,41 @@
     }
   </style>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css">
-  <script src="https://js.arcgis.com/4.19/"></script>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.24/"></script>
 
   <script>
     require([
-     "esri/config",
+      "esri/config",
       "esri/Map",
-      "esri/views/MapView"
-    ], function (esriConfig,Map, MapView) {
+      "esri/views/SceneView"
+  ], function(esriConfig,Map, SceneView) {
 
-      esriConfig.apiKey = "AAPKed898b01d6c0496282aa6c4d1d819efcKOhvqxaj6gDew8v29HlQBXwKBd3b624qYc9A__fj5mkd3FHMAZ0FZ6e2bjZeUg4g";
-      const map = new Map({
-        basemap: "arcgis-topographic" // Basemap layer
+    esriConfig.apiKey = "AAPKed898b01d6c0496282aa6c4d1d819efcKOhvqxaj6gDew8v29HlQBXwKBd3b624qYc9A__fj5mkd3FHMAZ0FZ6e2bjZeUg4g";
+
+    const map = new Map({
+      basemap: "arcgis-topographic", //Basemap layer service
+      ground: "world-elevation", //Elevation service
+    });
+
+    const view = new SceneView({
+      container: "viewDiv",
+      map: map,
+      camera: {
+        position: {
+          x: -76.1351, //Longitude
+          y: 43.0392, //Latitude
+          z: 2000//Meters
+        },
+        tilt: 60
+      }
       });
 
-      const view = new MapView({
-        map: map,
-        center: [-76.1474, 43.0481],
-        zoom: 14, 
-        container: "viewDiv",
-        constraints: {
-          snapToZoom: false
-        }
-      });
     });
   </script>
-</head>
 
+</head>
 <body>
   <div id="viewDiv"></div>
 </body>
-
 </html>
