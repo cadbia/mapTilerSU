@@ -2,51 +2,76 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>ArcGIS API for JavaScript Tutorials: Display a scene</title>
+  <title>Data Visulization</title>
   <style>
-    html, body, #viewDiv {
-      padding: 0;
-      margin: 0;
-      height: 100%;
-      width: 100%;
+    #loadScreen {
+        margin-bottom: -75%;
+        z-index: 1;
+        visibility: visible;
+        color:white;
+        background: linear-gradient(-45deg, #f4f76a, #f577a7, #54bde4, #36e6bd);
+        background-size: 400% 400%;
+        animation: gradient 25s ease infinite;
+        font-family: sans-serif;
+        height: 100%;
+        width: 100%;
     }
-  </style>
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+    #loadText{
+        display: flex ;
+        justify-content: center;
+        padding-top: 25%;
+           
+    }
+    .loader {
+        margin: auto;
+        display: flex;
+        margin-top: 0%;
+        border: 16px solid #ffffffa2;
+        border-top: 16px solid #80bce4;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        opacity: 90%;
+    }
 
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    #viewDiv {
+        z-index: 2;
+        visibility: hidden;
+        padding: 0; 
+        margin: 0;
+        height: 100%;
+        width: 100%;
+    }
+    
+
+  </style>
   <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.24/"></script>
-
-  <script>
-    require([
-      "esri/config",
-      "esri/Map",
-      "esri/views/SceneView"
-  ], function(esriConfig,Map, SceneView) {
-
-    esriConfig.apiKey = "AAPKed898b01d6c0496282aa6c4d1d819efcKOhvqxaj6gDew8v29HlQBXwKBd3b624qYc9A__fj5mkd3FHMAZ0FZ6e2bjZeUg4g";
-
-    const map = new Map({
-      basemap: "arcgis-topographic", //Basemap layer service
-      ground: "world-elevation", //Elevation service
-    });
-
-    const view = new SceneView({
-      container: "viewDiv",
-      map: map,
-      camera: {
-        position: {
-          x: -76.1351, //Longitude
-          y: 43.0392, //Latitude
-          z: 2000//Meters
-        },
-        tilt: 60
-      }
-      });
-
-    });
-  </script>
+  <script src="script.js"></script>
 
 </head>
 <body>
-  <div id="viewDiv"></div>
+    <div id="loadScreen">
+          <h1 id="loadText">Weather data loading, please wait...</h1>
+          <div class="loader"></div>
+    </div>
+    <div id="viewDiv"></div>
 </body>
 </html>
