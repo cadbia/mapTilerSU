@@ -1,77 +1,32 @@
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Data Visulization</title>
-  <style>
-    #loadScreen {
-        margin-bottom: -75%;
-        z-index: 1;
-        visibility: visible;
-        color:white;
-        background: linear-gradient(-45deg, #f4f76a, #f577a7, #54bde4, #36e6bd);
-        background-size: 400% 400%;
-        animation: gradient 25s ease infinite;
-        font-family: sans-serif;
-        height: 100%;
-        width: 100%;
-    }
-    @keyframes gradient {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
-    }
-    #loadText{
-        display: flex ;
-        justify-content: center;
-        padding-top: 25%;
-           
-    }
-    .loader {
-        margin: auto;
-        display: flex;
-        margin-top: 0%;
-        border: 16px solid #ffffffa2;
-        border-top: 16px solid #80bce4;
-        border-radius: 50%;
-        width: 120px;
-        height: 120px;
-        animation: spin 2s linear infinite;
-        opacity: 90%;
-    }
-
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    #viewDiv {
-        z-index: 2;
-        visibility: hidden;
-        padding: 0; 
-        margin: 0;
-        height: 100%;
-        width: 100%;
-    }
-    
-
-  </style>
-  <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css">
-  <script src="https://js.arcgis.com/4.24/"></script>
-  <script src="script.js"></script>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Data Visulization</title>
+    <script src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+    <script type="text/javascript" src = "script.js"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <div id="loadScreen">
-          <h1 id="loadText">Weather data loading, please wait...</h1>
-          <div class="loader"></div>
+        <h7 id="signature">Created by Caden Bialow</h7>
+        <h1 id="loadText">Data loading, please wait...</h1>
+        <div class="loader"></div>
     </div>
-    <div id="viewDiv"></div>
+    <div id="mapScreen">
+        <div id = "map">
+            <div id = "southCampus">
+                <!-- <img src = /Users/caden/SU_Work/mapTilerSU/SouthCampus.png> -->
+            </div>
+        </div>
+    </div>
 </body>
 </html>
